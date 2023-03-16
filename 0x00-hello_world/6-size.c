@@ -1,7 +1,7 @@
 #include<stdio.h>
 /**
  * main - Entry point of function
- * Resume: 0 for success
+ * Return: 0 for success
  */
 int main(void)
 {
