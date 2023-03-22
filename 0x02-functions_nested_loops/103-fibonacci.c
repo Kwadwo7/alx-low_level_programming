@@ -10,7 +10,7 @@ int main(void)
 {
 	int i;
 
-	unsigned long init j, k, next, sum;
+	unsigned long = init j, k, next, sum;
 
 	j = 1;
 	k = 2;
