@@ -1,34 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <string.h>
 
-int main (int argc, char *argv[])
+/**
+ * main - addition of integers
+ * @argc: argument count
+ * @argv: arguments entered
+ * Return: 0 for success and 1 for error
+ */
+
+int main(int argc, char *argv[])
 {
 	int sum;
 	int j;
-	int i;
-	int k;
-	int len;
-	
-	i = 0;
+
 	if (argc == 1)
 	{
-		putchar(i + '0');
+		printf("0\n");
+		return (0);
 	}
 
-	len = strlen(*argv);
-	for (k = 1; k < len; k++)
+	for (j = 1; argv[j]; j++)
 	{
-		if (isdigit(*argv[k] == 0))
+		if (isdigit(*argv[j]) == 0)
 		{
 			printf("Error\n");
+			return (1);
 		}
-	}
-	sum = 0;
-	for (j = 1; j < argc; j++)
-	{
-		sum += atoi(argv[j]);
+		else
+		{
+			sum += atoi(argv[j]);
+		}
 	}
 	printf("%d\n", sum);
 	return (0);
