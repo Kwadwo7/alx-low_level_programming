@@ -9,7 +9,7 @@
  * Return: pointer
  */
 
-char *constant (char *a, char b, unsigned int c)
+char *constant(char *a, char b, unsigned int c)
 {
 	unsigned int i;
 
