@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "dog.h"
 
@@ -7,7 +7,7 @@
  * @d: pointer to struct dog
  */
 
-void init_dog(struct dog *d, char *name, float age, char *owner)
+void print_dog(struct dog *d)
 {
 	if (d == NULL)
 		return;
