@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * get_op_func - the correct function is selected to perform operation of the user
+ * get_op_func - the correct function is selected to perform operation
  * @s: argument
  * Return: function pointer in line operator parameter
  */
@@ -19,6 +19,7 @@ int (*get_op_func(char *s))(int, int)
 	};
 
 	int i;
+
 	i = 0;
 
 	while (ops[i].op != NULL && *(ops[i].op) != *s)
