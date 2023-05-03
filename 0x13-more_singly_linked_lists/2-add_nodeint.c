@@ -7,7 +7,7 @@
  * Return: a pointer to the new node
  */
 
-listint_t *add_nodeint(listint_t **head, const int n);
+listint_t *add_nodeint(listint_t **head, const int n)
 {
 	listint_t *newnode;
 
