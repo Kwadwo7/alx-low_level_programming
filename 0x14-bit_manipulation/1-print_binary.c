@@ -13,7 +13,7 @@ void print_binary(unsigned long int n)
 
 	for (k = 63; k >= 0; k--)
 	{
-		present = n >> i;
+		present = n >> k;
 		if (present & 1)
 		{
 			_putchar('1');
