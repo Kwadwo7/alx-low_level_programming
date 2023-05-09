@@ -7,7 +7,7 @@ void close_a_file(int f);
 
 /**
  * create_buff - allocates memory(1024 bytes) for a buffer
- * @filename: the file for which buffer stores chars for 
+ * @filename: the name of the file the buffer is storing the chars
  * Return: a pointer to the new buffer created.
  */
 
@@ -89,6 +89,3 @@ int main(int argc, char *argv[])
 	close_a_file(to_file);
 	return (0);
 }
-
-
-
