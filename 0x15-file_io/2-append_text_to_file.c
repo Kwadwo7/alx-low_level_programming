@@ -24,10 +24,10 @@ int append_text_to_file(const char *filename, char *text_content)
 			length++;
 	}
 	m = open(filename, O_WRONLY | O_APPEND);
-	g = write(o, text_content, length);
+	g = write(m, text_content, length);
 
 	if (m == -1 || g == -1)
 		return (-1);
-	close(o);
+	close(m);
 	return (1);
 }
