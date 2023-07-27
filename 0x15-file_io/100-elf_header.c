@@ -39,8 +39,8 @@ int magic_print(unsigned char *e_ident)
 	dex = 0;
 	while(dex < EI_NIDENT)
 	{
-		printf("%02x", id_ident[dex]);
-		if(dex == EL_NIDENT -1)
+		printf("%02x", e_ident[dex]);
+		if(dex == EI_NIDENT -1)
 			printf("\n");
 		else
 			printf(" ");
@@ -59,7 +59,7 @@ int class_print(unsigned char *e_ident)
 {
 	write(1, "Class: ", 7);
 	
-	switch(id_ident[EL_CLASS])
+	switch(e_ident[EI_CLASS])
 	{
 		case ELFCLASSNONE:
 			printf("none\n");
@@ -98,7 +98,7 @@ int data_print(unsigned char *e_ident)
 			printf("2's complement, big endian\n");
 			break;
 		default:
-			printf("<unknown: %x>n", e_ident[EI_CLASS])
+			printf("<unknown: %x>n", e_ident[EI_CLASS]);
 	}
 	return(0);
 }
@@ -184,6 +184,7 @@ int osabi_print(unsigned char *e_ident)
 int abi_print(unsigned char *e_ident)
 {
 	printf("ABI Version: %d\n", e_ident[EI_ABIVERSION]);
+	return(0);
 }
 
 /**
@@ -282,23 +283,23 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	header = malloc(sizeof(EIf64_Ehdr));
+	header = malloc(sizeof(Elf64_Ehdr));
 	if(header == NULL)
 	{
-		close_elf(0);
+		elf_close(0);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	i = read(o, header, sizeof(EIf64_Ehdr));
-	if(r == -1)
+	j = read(i, header, sizeof(Elf64_Ehdr));
+	if(j == -1)
 	{
 		free(header);
-		close_elf(0);
+		elf_close(0);
 		dprintf(STDERR_FILENO, "Error: '%s': No such file\n", argv[1]);
 		exit(98);
 	}
 	
-	elf_check(header->e_ident);
+	ch_elf(header->e_ident);
 	printf("ELF Header:\n");
 	magic_print(header->e_ident);
 	class_print(header->e_ident);
@@ -309,7 +310,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	type_print(header->e_type, header->e_ident);
 	entry_print(header->e_entry, header->e_ident);
 	free(header);
-	close_elf(i);
+	elf_close(i);
 	return(0);
 }
 
