@@ -35,7 +35,7 @@ int magic_print(unsigned char *e_ident)
 {
 	int dex;
 
-	printf("Magic:");
+	printf("Magic: ");
 	dex = 0;
 	while(dex < EI_NIDENT)
 	{
@@ -57,7 +57,7 @@ int magic_print(unsigned char *e_ident)
 
 int class_print(unsigned char *e_ident)
 {
-	write(1, "Class: ", 7);
+	printf("Class: ");
 	
 	switch(e_ident[EI_CLASS])
 	{
@@ -98,7 +98,7 @@ int data_print(unsigned char *e_ident)
 			printf("2's complement, big endian\n");
 			break;
 		default:
-			printf("<unknown: %x>n", e_ident[EI_CLASS]);
+			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 	return(0);
 }
@@ -117,7 +117,7 @@ int version_print(unsigned char *e_ident)
 	switch (e_ident[EI_VERSION])
 	{
 		case EV_CURRENT:
-			printf("(current)\n");
+			printf(" (current)\n");
 			break;
 		default:
 			printf("\n");
@@ -304,11 +304,13 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	magic_print(header->e_ident);
 	class_print(header->e_ident);
 	data_print(header->e_ident);
+
 	version_print(header->e_ident);
 	osabi_print(header->e_ident);
 	abi_print(header->e_ident);
 	type_print(header->e_type, header->e_ident);
 	entry_print(header->e_entry, header->e_ident);
+
 	free(header);
 	elf_close(i);
 	return(0);
