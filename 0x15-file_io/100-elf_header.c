@@ -11,15 +11,13 @@ int ch_elf(unsigned char *e_ident)
 {
 	int dex;
 
-	dex = 0;
-	while(dex < 4)
+	for(dex = 0; dex < 4; dex++)
 	{
 		if(e_ident[dex] != 127 && e_ident[dex] != 'E' && e_ident[dex] != 'L' && e_ident[dex] != 'F')
 		{
-			write(2, "Error: this is not an ELF file\n", 30);
-			return (1);
+			dprintf(STDERR_FILENO, "Error: this is not an ELF file\n");
+			exit (98);
 		}
-		dex++;
 	}
 	return (0);
 }
@@ -36,15 +34,13 @@ int magic_print(unsigned char *e_ident)
 	int dex;
 
 	printf("Magic: ");
-	dex = 0;
-	while(dex < EI_NIDENT)
+	for(dex=0; dex<EI_NIDENT; dex++)
 	{
 		printf("%02x", e_ident[dex]);
 		if(dex == EI_NIDENT -1)
 			printf("\n");
 		else
 			printf(" ");
-		dex++;
 	}
 	return (0);
 }
