@@ -4,10 +4,9 @@
  * ch_elf - checks for elf file
  * @e_ident: points to array containing elf magic numbers
  * Description: exit code if file is not an elf file return (1)
- * Return: 0
  */
 
-int ch_elf(unsigned char *e_ident)
+void ch_elf(unsigned char *e_ident)
 {
 	int dex;
 
@@ -19,17 +18,15 @@ int ch_elf(unsigned char *e_ident)
 			exit (98);
 		}
 	}
-	return (0);
 }
 
 /**
  * magic_print - prints magic numbers of ELF header
  * @e_ident: a pointer to array containing ELF header
  * Descripton: magic numbers are separated by spaces
- * Return: 0
  */
 
-int magic_print(unsigned char *e_ident)
+void magic_print(unsigned char *e_ident)
 {
 	int dex;
 
@@ -42,16 +39,14 @@ int magic_print(unsigned char *e_ident)
 		else
 			printf(" ");
 	}
-	return (0);
 }
 
 /**
  * class_print - prints the class of an ELF header.
  * @e_ident: a pointer to array containing ELF header
- * Return: 0
  */
 
-int class_print(unsigned char *e_ident)
+void class_print(unsigned char *e_ident)
 {
 	printf("Class: ");
 	
@@ -69,16 +64,14 @@ int class_print(unsigned char *e_ident)
 		default:
 			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
-	return (0);
 }
 
 /**
  * data_print - prints the data of an ELF header.
  * @e_ident: a pointer to an array containing the ELF class.
- * Return: 0
  */
 
-int data_print(unsigned char *e_ident)
+void data_print(unsigned char *e_ident)
 {
 	printf("Data: ");
 
@@ -96,17 +89,15 @@ int data_print(unsigned char *e_ident)
 		default:
 			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
-	return(0);
 }
 
 
 /**
  * version_print - prints the version of an ELF header
  * @e_ident: A pointer to an array containing the ELF version
- * Return: 0 for success
  */
 
-int version_print(unsigned char *e_ident)
+void version_print(unsigned char *e_ident)
 {
 	printf("Version: %d", e_ident[EI_VERSION]);
 
@@ -119,17 +110,15 @@ int version_print(unsigned char *e_ident)
 			printf("\n");
 			break;
 	}
-	return(0);
 }
 
 
 /**
  * osabi_print - prints the OS/ABI of an ELF header.
  * @e_ident: A pointer to an array containing the ELF version
- * Return: 0 for success
  */
 
-int osabi_print(unsigned char *e_ident)
+void osabi_print(unsigned char *e_ident)
 {
 	printf("OS/ABI: ");
 
@@ -168,29 +157,25 @@ int osabi_print(unsigned char *e_ident)
 		default:
 			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
-	return (0);
 }
 
 /**
  * abi_print - prints the ABI version of an ELF header.
  * @e_ident: A pointer to an array containing the ELF ABI version.
- * Return: 0 for success
  */
 
 int abi_print(unsigned char *e_ident)
 {
 	printf("ABI Version: %d\n", e_ident[EI_ABIVERSION]);
-	return(0);
 }
 
 /**
  * type_print - prints the type of an ELF header.
  * @e_ident: A pointer to an array containing the ELF class
  * e_type: The ELF type.
- * Return: 0 for success.
  */
 
-int type_print(unsigned int e_type, unsigned char *e_ident)
+void type_print(unsigned int e_type, unsigned char *e_ident)
 {
 	if(e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
@@ -216,17 +201,15 @@ int type_print(unsigned int e_type, unsigned char *e_ident)
 		default:
 			printf("<unknown: %x>\n", e_type);
 	}
-	return (0);
 }
 
 /**
  * entry_print - prints the entry point of an ELF file
  * @e_entry: The address of the ELF entry point.
  * @e_ident: A pointer to an array containing the ELF class
- * Return: 0 for success
  */
 
-int entry_print(unsigned long int e_entry, unsigned char *e_ident)
+void entry_print(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf("Entry point address:");
 	
@@ -239,24 +222,21 @@ int entry_print(unsigned long int e_entry, unsigned char *e_ident)
 			printf("%#x\n", (unsigned int)e_entry);
 		else
 			printf("%#lx\n", e_entry);
-	return(0);
 }
 
 /**
  * elf_close - closes an ELF file
  * @elf: The file descriptor of the ELF file.
- * Description: if the file cannot be closed - exit code 98.
- * Return: 0 for success
+ * Description: if the file cannot be closed - exit code 98
  */
 
-int elf_close(int elf)
+void elf_close(int elf)
 {
 	if(close(elf) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", elf);
 		exit(98);
 	}
-	return(0);
 }
 
 
@@ -265,7 +245,6 @@ int elf_close(int elf)
  * @argc: The number of arguments supplied to the program
  * @argv: An array of pointers to the arguments
  * Description: if the file is not an ELF file, the function fails
- * Return: 0 for success
  */
 
 int main(int __attribute__((__unused__)) argc, char *argv[])
@@ -311,5 +290,3 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	elf_close(i);
 	return(0);
 }
-
-

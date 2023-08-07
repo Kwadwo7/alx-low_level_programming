@@ -10,17 +10,17 @@
 #include <stdlib.h>
 
 ssize_t read_textfile(const char *filename, size_t letters);
-int create_file(const char *filename, char *text_content);
-int append_text_to_file(const char *filename, char *text_content);
-int ch_elf(unsigned char *e_ident);
-int magic_print(unsigned char *e_ident);
-int class_print(unsigned char *e_ident);
-int data_print(unsigned char *e_ident);
-int version_print(unsigned char *e_ident);
-int osabi_print(unsigned char *e_ident);
-int abi_print(unsigned char *e_ident);
-int type_print(unsigned int e_type, unsigned char *e_ident);
-int entry_print(unsigned long int e_entry, unsigned char *e_ident);
-int elf_close(int elf);
+void create_file(const char *filename, char *text_content);
+void append_text_to_file(const char *filename, char *text_content);
+void ch_elf(unsigned char *e_ident);
+void magic_print(unsigned char *e_ident);
+void class_print(unsigned char *e_ident);
+void data_print(unsigned char *e_ident);
+void version_print(unsigned char *e_ident);
+void osabi_print(unsigned char *e_ident);
+void abi_print(unsigned char *e_ident);
+void type_print(unsigned int e_type, unsigned char *e_ident);
+void entry_print(unsigned long int e_entry, unsigned char *e_ident);
+void elf_close(int elf);
 
 #endif
