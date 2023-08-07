@@ -1,4 +1,22 @@
-#include "main.h"
+#include <elf.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void ch_elf(unsigned char *e_ident);
+void magic_print(unsigned char *e_ident);
+void class_print(unsigned char *e_ident);
+void data_print(unsigned char *e_ident);
+void version_print(unsigned char *e_ident);
+void abi_print(unsigned char *e_ident);
+void osabi_print(unsigned char *e_ident);
+void type_print(unsigned int e_type, unsigned char *e_ident);
+void entry_print(unsigned long int e_entry, unsigned char *e_ident);
+void elf_print(int elf);
+
 
 /**
  * ch_elf - checks for elf file
@@ -164,7 +182,7 @@ void osabi_print(unsigned char *e_ident)
  * @e_ident: A pointer to an array containing the ELF ABI version.
  */
 
-int abi_print(unsigned char *e_ident)
+void abi_print(unsigned char *e_ident)
 {
 	printf("ABI Version: %d\n", e_ident[EI_ABIVERSION]);
 }
